@@ -3,7 +3,7 @@ import UserController from "../Controllers/UserController.js";
 
 const router = new Router()
 
-router.get("/", UserController.get)
+router.get("/", (req, res) => res.json(200))
 router.post("/signin", UserController.signIn)
 router.post("/signup", UserController.signUp)
 router.post("/reset-password", UserController.resetPassword)
