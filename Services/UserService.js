@@ -46,11 +46,11 @@ class UserService {
 
             const generatedPassword = nanoid(5).toUpperCase()
             const hash_password = await bcrypt.hash(generatedPassword, 3)
-            const newUser = await models.User.create({id: nanoid(16),  phone: customer_phone, orderId: order_id,  email, password: hash_password})
+            const newUser = await models.User.create({id: nanoid(16),  phone: customer_phone, order_id, email, password: hash_password})
             delete newUser.dataValues.password
 
             await MailService.send({
-                from: "admin@healera.ru",
+                from: 'Нутрициолог Валерия Кононова <admin@healera.ru>',
                 to: email,
                 subject: "Доступ к книге рецептов",
                 html: getAuthMessage({email, generatedPassword})

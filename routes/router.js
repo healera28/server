@@ -9,4 +9,4 @@ router.post("/signup", UserController.signUp)
 router.post("/reset-password", UserController.resetPassword)
 router.post("/notify-payment-status", UserController.notifyPaymentStatus)
 
-export default router
+export default router 

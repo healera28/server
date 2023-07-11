@@ -14,7 +14,6 @@ class MailService {
                 port: 2525,
                 sender: "admin@healera.ru",
                 secure: false,
-                fromName: "admin@healera.ru",
                 auth: {
                     user: 'admin@healera.ru',
                     pass: process.env.EMAIL_PASSWORD
