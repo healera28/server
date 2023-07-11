@@ -17,25 +17,29 @@ app.use(cors({
   credentials: true
 }))
 
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({
+  extended: true
+}))
 app.use(express.json())
 app.use("/api", router)
 app.use(errorMiddleware)
 
-async function start() {
-    try {
-        await sequalize.authenticate()
-        await sequalize.sync().then(() => {
-          console.log('Database started!')
-        }).catch(error => {
-          console.error('Error synchronizing database:', error)
-        })
 
-        app.listen(PORT, () => console.log("Server started on port: ", PORT))
-    }catch(e) {
-        console.log("ERROR: ")
-        console.log(e.message)
-    }
+async function start() {
+  try {
+    await sequalize.authenticate()
+    await sequalize.sync().then(() => {
+      console.log('Database started!')
+    }).catch(error => {
+      console.error('Error synchronizing database:', error)
+    })
+
+    app.listen(PORT, () =>
+      console.log("Server started on port: ", PORT))
+  } catch (e) {
+    console.log("ERROR: ")
+    console.log(e.message)
+  }
 }
 
 start()
