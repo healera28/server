@@ -21,7 +21,7 @@ class UserService {
             await models.User.update({password: hash_password}, {where: {email}})
 
             const response = await MailService.send({
-                from: "admin@healera.ru",
+                from: "Нутрициолог Валерия Кононова <admin@healera.ru>",
                 to: email,
                 subject: "Новый пароль",
 
