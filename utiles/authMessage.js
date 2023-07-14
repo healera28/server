@@ -32,12 +32,6 @@ function getAuthMessage({
                 </style>
             </head>
             <body>
-                        <h1>Доступ к админ панели healera.ru</h1>
-                        <div class="container">
-                            <p><strong>Логин:</strong> <span>${email}</span></p>
-                            <p><strong>${type === "signup" ? "Пароль:": "Новый пароль:"}</strong> <span>${generatedPassword}</span></p>
-                        </div>
-
                         <h1>${type === "signup" ? "Вам дан доступ к книге рецептов Валерии Кононовой" : "Новый пароль доступа к книге рецептов Валерии Кононовой" }</h1>
                         <div class="container">
                             <p><strong>Логин:</strong> <span>${email}</span></p>

@@ -48,14 +48,14 @@ class AdminServices {
 
             const generatedPassword = nanoid(5).toUpperCase()
             const hash_password = await bcrypt.hash(generatedPassword, 3)
-            const newUser = await models.Admin.create({id: nanoid(16),  email, password: hash_password})
+            const newUser = await models.Admin.create({id: nanoid(16), email, password: hash_password, role: "ADMIN"})
             delete newUser.dataValues.password
 
             await MailService.send({
                 from: 'admin@healera.ru',
                 to: email,
                 subject: "Доступ к админ панели healera.ru",
-                html: getAuthMessage({email, generatedPassword, type: "admin"})
+                html: getAdminAuthMessage({email, generatedPassword, type: "admin"})
             })
             
             return "sent"

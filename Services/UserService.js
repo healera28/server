@@ -34,7 +34,7 @@ class UserService {
     }
 
     async signUp(body) {
-        const {email, customer_phone, order_id,} = body
+        const {email, customer_phone, order_id} = body
 
         try {
             const candidate = await models.User.findOne({where: {email}})
