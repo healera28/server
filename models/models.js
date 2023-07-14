@@ -9,4 +9,16 @@ const User = sequalize.define("user", {
     password: {type: DataTypes.STRING, allowNull: false}
 })
 
-export default {User}
+const Admin = sequalize.define("admin", {
+    id: {type: DataTypes.STRING, unique: true, allowNull: false, primaryKey: true},
+    email: {type: DataTypes.STRING, unique: true, allowNull: false},
+    password: {type: DataTypes.STRING, allowNull: false}
+})
+
+const Code = sequalize.define("code", {
+    id: {type: DataTypes.INTEGER, unique: true, allowNull: false, primaryKey: true, autoIncrement: true},
+    code: {type: DataTypes.STRING, unique: false, allowNull: false},
+    expiresIn: {type: DataTypes.DATE, unique: false, allowNull: false}
+})
+
+export default {User, Admin, Code}

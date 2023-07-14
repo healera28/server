@@ -1,10 +1,28 @@
 import UserService from "../Services/UserService.js"
+import models from "../models/models.js"
 
 class UserController {  
+    async deleteUser(req, res, next) {
+        const {userId} = req.params
+
+        try {
+            const response = await models.User.destroy({where: {id: userId}})
+            return res.json(response)
+        }catch(e) {
+            next(e)
+        }
+    }
+
+    async getUsers(req, res, next) {
+        try {
+            const users = await models.User.findAll()
+            return res.json(users)
+        }catch(e) {
+            next(e)
+        }
+    }
+
     async notifyPaymentStatus(req, res, next) {
-        console.log("PAYMENT STATUS: ", req.body.payment_status)
-        console.log("body: ", req.body)
-        
         try {       
             if(req.body.payment_status === "success") {
                 if(req.body.customer_email) {

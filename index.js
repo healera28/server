@@ -8,7 +8,7 @@ const app = express()
 const PORT = process.env.PORT || 8000
 
 app.use(cors({
-  origin: ["https://healera.payform.ru", "https://app.super.so", "https://book.healera.ru"],
+  origin: ["http://localhost:3000", "https://healera.payform.ru", "https://app.super.so", "https://book.healera.ru"],
   credentials: true
 }))
 

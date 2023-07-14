@@ -8,7 +8,7 @@ import getAuthMessage from "../utiles/authMessage.js"
 class UserService {
     async resetPassword(body) {
         const {email} = body
-
+        
         try {
             const user = await models.User.findOne({where: {email}})
 
@@ -24,7 +24,6 @@ class UserService {
                 from: "Нутрициолог Валерия Кононова <admin@healera.ru>",
                 to: email,
                 subject: "Новый пароль",
-
                 html: getAuthMessage({email, generatedPassword, type: "reset"})
             })
             
