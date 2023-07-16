@@ -19,7 +19,16 @@ class UserController {
         const limit = 3
         const search = req.query.search || '';
       
-        const query = search ? { email: { [Op.iLike]: `%${search}%` } } : {}
+        const query = search ? 
+            {
+                [Op.or]: [
+                  { email: { [Op.iLike]: `%${search}%` } },
+                  { order_id: { [Op.iLike]: `%${search}%` } },
+                  { phone: { [Op.iLike]: `%${search}%` } },
+                ],
+            }
+        : 
+            {}
 
         try {
             const usersCount = await models.User.count({ where: query })
