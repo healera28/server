@@ -19,7 +19,7 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 app.use("/api", router)
-app.use(errorMiddleware)
+app.use(errorMiddleware)k
 
 async function start() {
   try {

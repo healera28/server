@@ -1,3 +1,4 @@
+import { Op } from "sequelize"
 import UserService from "../Services/UserService.js"
 import models from "../models/models.js"
 
@@ -14,9 +15,27 @@ class UserController {
     }
 
     async getUsers(req, res, next) {
+        const page = parseInt(req.query.page) || 1
+        const limit = 3
+        const search = req.query.search || '';
+      
+        const query = search ? { email: { [Op.iLike]: `%${search}%` } } : {}
+
         try {
-            const users = await models.User.findAll()
-            return res.json(users)
+            const usersCount = await models.User.count({ where: query })
+
+            const users = await models.User.findAll({
+                where: query,
+                offset: (page - 1) * limit,
+                limit: limit
+            })
+
+            return res.json({
+                users,
+                page,
+                pages: Math.ceil(usersCount / limit),
+                usersCount,
+            })
         }catch(e) {
             next(e)
         }
